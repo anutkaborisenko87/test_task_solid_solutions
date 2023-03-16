@@ -1,0 +1,14 @@
+{
+    "autoload": {
+        "psr-4": {
+            "TestTaskSolidSolutions\\": ""
+        }
+    },
+    "files": [
+        "routes/routes.php"
+    ],
+    "require": {
+        "ext-pdo": "*",
+        "ext-json": "*"
+    }
+}
