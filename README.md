@@ -25,7 +25,7 @@ when hovering over the parent node).
   When you click on "Yes" - the tree is deleted.
 
 - When trying to delete a node, a confirmation modal pops up without a timer
-- additionally added validation of the input fields for the name of the node (root) of the tree (required, 
+- additionally added validation of the input fields for the name of the node (root) of the tree (required,
   the length from 5 to 15 characters)
 - Bootstrap was used to design the page.
 
@@ -58,6 +58,13 @@ composer install
   in
   method [config](https://github.com/anutkaborisenko87/test_task_solid_solutions/blob/main/app/helpers/helpers.php#L48)
   in array $config
+
+### My github profile
+
+Here you can see examples of my other work. Even though these are just test tasks, they can be used to understand my
+approach to completing tasks.
+
+- [Anna Borisenko](https://github.com/anutkaborisenko87/)
 
 ### Contacts
 
