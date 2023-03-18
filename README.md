@@ -34,6 +34,11 @@ when hovering over the parent node).
 - database dump is
   here [script.sql](https://github.com/anutkaborisenko87/test_task_solid_solutions/blob/main/script.sql)
 
+- added ability to edit node titles
+
+  - when you click on the title of the node (root), a modal appears with the form for editing the title of the node (
+  root), where validation also works
+
 ## Instructions for checking this project:
 
 To check the functionality of the project, you need to clone the project:
