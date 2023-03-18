@@ -38,7 +38,7 @@ class Router
     {
         if (array_key_exists($method, self::$routes)) {
             foreach (self::$routes[$method] as $route => $routeData) {
-                if ($url === $route) {
+                if (parse_url($url)['path'] === $route) {
                     $callback = $routeData['callback'];
 
                     if (!is_array($callback) && !is_string($callback)) {
@@ -67,6 +67,6 @@ class Router
                 }
             }
         }
-        return (new View())->render('notfoundpage/notfoundpage');
+        (new View())->render('notfoundpage/notfoundpage');
     }
 }

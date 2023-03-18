@@ -39,6 +39,7 @@ class QueryBuilder extends DataBase
 
         return $this;
     }
+
     public function whereNull($column)
     {
         $query = "SELECT {$this->select} FROM {$this->table}";
@@ -48,7 +49,6 @@ class QueryBuilder extends DataBase
 
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
-
 
     /**
      * @return array|false
@@ -134,15 +134,18 @@ class QueryBuilder extends DataBase
     public function delete(): int
     {
         $query = "DELETE FROM {$this->table}";
-        if (!empty($this->wheres)) {
+        if (!empty($this->where)) {
             $query .= " WHERE ";
-            foreach ($this->wheres as $i => $where) {
+            $values = [];
+            foreach ($this->where as $i => $where) {
                 $operator = $i == 0 ? "" : "AND";
                 $query .= "{$operator} {$where['column']} {$where['operator']} ?";
                 $values[] = $where['value'];
             }
+            return $this->query($query, $values)->rowCount();
         }
-        return $this->query($query, $values ?? [])->rowCount();
+        return 0;
+
     }
 
 }

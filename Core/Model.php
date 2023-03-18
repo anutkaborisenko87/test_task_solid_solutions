@@ -33,11 +33,9 @@ class Model
         }
     }
 
-    public function create($data)
+    public function create(array $data)
     {
-        $columns = array_intersect_key($data, array_flip($this->fillable));
-        $this->queryBuilder->insert($columns);
-        return $this->queryBuilder->lastInsertId();
+        return (new QueryBuilder())->table($this->table)->insert($data);
     }
 
     public function update($data): int
@@ -45,14 +43,12 @@ class Model
         $id = $data[$this->primaryKey];
         $columns = array_intersect_key($data, array_flip($this->fillable));
         unset($columns[$this->primaryKey]);
-        $this->queryBuilder->where($this->primaryKey, '=', $id);
-        return $this->queryBuilder->update($columns);
+        return (new QueryBuilder())->table($this->table)->where($this->primaryKey, '=', $id)->update($columns);
     }
 
     public function delete($id): int
     {
-        $this->queryBuilder->where($this->primaryKey, '=', $id);
-        return $this->queryBuilder->delete();
+        return $this->queryBuilder->where($this->primaryKey, '=', $id)->delete();
     }
 
     public function find($id)
