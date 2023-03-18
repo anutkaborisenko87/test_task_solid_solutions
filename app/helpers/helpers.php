@@ -47,7 +47,14 @@ function response(): Response
  */
 function config($key, $default = null)
 {
-    $config = require_once __DIR__ . '/../config/config.php';
+
+    $config = [
+        "db_port" => "3306",
+        "db_host" => "localhost",
+        "db_name" => "test_task_solid_solutions",
+        "db_user" => "root",
+        "db_pass" => "",
+    ];
 
     return $config[$key] ?? $default;
 }

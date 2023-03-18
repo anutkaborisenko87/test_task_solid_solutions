@@ -12,11 +12,11 @@ class Config
     public static function databaseConfig(): array
     {
         return [
-            'host' => config('db_host', 'localhost'),
-            'port' => config('db_port', '3306'),
-            'database' => config('db_name', 'test_task_solid_solutions'),
-            'username' => config('db_user', 'root'),
-            'password' => config('db_pass', ''),
+            'host' => config('db_host'),
+            'port' => config('db_port'),
+            'database' => config('db_name'),
+            'username' => config('db_user'),
+            'password' => config('db_pass'),
             'charset' => 'utf8mb4',
             'collation' => 'utf8mb4_unicode_ci',
             'options' => [

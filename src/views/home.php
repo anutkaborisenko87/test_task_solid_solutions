@@ -23,8 +23,8 @@
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="submit" class="btn btn-primary">Save root</button>
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-primary">Create root</button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cansel</button>
                 </div>
             </form>
         </div>
@@ -51,8 +51,8 @@
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="submit" class="btn btn-primary">Save node</button>
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-primary">Create node</button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cansel</button>
                 </div>
             </form>
         </div>
@@ -79,8 +79,8 @@
                         <strong><span class="text-danger" id="timer"></span></strong>
                     </div>
                     <div>
-                        <button type="submit" class="btn btn-danger">Delete Root</button>
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                        <button type="submit" class="btn btn-danger">Yes, I am</button>
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
                     </div>
                 </div>
             </form>
@@ -104,8 +104,8 @@
             <form id="deleteNode" action="/delete_node" method="post">
                 <input type="hidden" name="node_id" id="node_id">
                 <div class="modal-footer justify-content-center">
-                    <button type="submit" class="btn btn-danger">Delete Node</button>
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                    <button type="submit" class="btn btn-danger">Yes, I am</button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
                 </div>
             </form>
         </div>

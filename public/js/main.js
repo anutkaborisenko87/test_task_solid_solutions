@@ -41,14 +41,12 @@ jQuery(document).ready(function () {
                 "data-target": "#deleteNodeModal"
             }).text("-");
 
-            a.append(button).append(button2);
-
             if (item.nodes && item.nodes.length) {
                 let classVal = item.depth === 0 ? "submenu" : "submenu subsubmenu";
                 li.append(rendersubMenu(item.nodes, classVal));
             }
 
-            li.append(a);
+            li.append(a).append(button).append(button2);
             ul.append(li);
         });
 
@@ -68,7 +66,7 @@ jQuery(document).ready(function () {
 
                 if (item.nodes && item.nodes.length) {
                     let li = $("<li>");
-                    let a = $("<a>", {href: "#"}).text(item.title);
+                    let a = $("<a>", {href: "#"}).text(item.title + '(root)');
                     a.prepend('<span class="menu-icon">▶</span>');
                     let button1 = $("<button>", {
                         type: "button",
@@ -85,12 +83,11 @@ jQuery(document).ready(function () {
                         "data-target": "#deleteRootModal"
                     }).text("-");
 
-                    a.append(button1).append(button2);
-                    li.append(a).append(rendersubMenu(item.nodes, "submenu"));
+                    li.append(a).append(button1).append(button2).append(rendersubMenu(item.nodes, "submenu"));
                     ul.append(li);
                 } else {
                     let li = $("<li>");
-                    let a = $("<a>", {href: "#"}).text(item.title);
+                    let a = $("<a>", {href: "#"}).text(item.title + '(root)');
                     let button1 = $("<button>", {
                         type: "button",
                         class: "btn btn-outline-success btn-sm create_node",
@@ -106,8 +103,7 @@ jQuery(document).ready(function () {
                         "data-target": "#deleteRootModal"
                     }).text("-");
 
-                    a.append(button1).append(button2);
-                    li.append(a);
+                    li.append(a).append(button1).append(button2);
                     ul.append(li);
                 }
 
@@ -272,7 +268,7 @@ jQuery(document).ready(function () {
     });
 
     $('#deleteRootModal').on('shown.bs.modal', function () {
-        let seconds = 60;
+        let seconds = 20;
         let timer = $('#timer');
         timer.text(seconds);
         var countdown = setInterval(function () {

@@ -5,7 +5,6 @@
         },
         "files": [
             "app/helpers/helpers.php",
-            "app/config/config.php",
             "routes/routes.php"
         ]
     },
