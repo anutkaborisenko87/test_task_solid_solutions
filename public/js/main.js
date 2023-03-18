@@ -24,7 +24,16 @@ jQuery(document).ready(function () {
 
         $.each(menuItems, function (i, item) {
             let li = $("<li>");
-            let a = $("<a>", {href: "#"}).html(
+            let a = $("<a>", {
+                href: "#",
+                type: "button",
+                class: "edit_node",
+                "data-nodeId": item.id,
+                "data-nodetitle": item.title,
+                "data-toggle": "modal",
+                "data-target": "#editNodeModal"
+
+            }).html(
                 (item.nodes && item.nodes.length) ? '<span class="menu-icon">▶</span>' : ""
             ).append(item.title);
             let button = $("<button>", {
@@ -66,7 +75,16 @@ jQuery(document).ready(function () {
 
                 if (item.nodes && item.nodes.length) {
                     let li = $("<li>");
-                    let a = $("<a>", {href: "#"}).text(item.title + '(root)');
+                    let a = $("<a>", {
+                        href: "#",
+                        type: "button",
+                        class: "edit_node",
+                        "data-nodeId": item.id,
+                        "data-nodetitle": item.title,
+                        "data-toggle": "modal",
+                        "data-target": "#editNodeModal"
+
+                    }).text(item.title + '(root)');
                     a.prepend('<span class="menu-icon">▶</span>');
                     let button1 = $("<button>", {
                         type: "button",
@@ -87,7 +105,17 @@ jQuery(document).ready(function () {
                     ul.append(li);
                 } else {
                     let li = $("<li>");
-                    let a = $("<a>", {href: "#"}).text(item.title + '(root)');
+                    let a = $("<a>",
+                        {
+                            href: "#",
+                            type: "button",
+                            class: "edit_node",
+                            "data-nodeId": item.id,
+                            "data-nodetitle": item.title,
+                            "data-toggle": "modal",
+                            "data-target": "#editNodeModal"
+
+                        }).text(item.title + '(root)');
                     let button1 = $("<button>", {
                         type: "button",
                         class: "btn btn-outline-success btn-sm create_node",
@@ -147,8 +175,17 @@ jQuery(document).ready(function () {
 
     $('body').on('click', 'button.delete_root', function (event) {
         let rootId = $(this).data('rootid');
-        $('#root_id').val(rootId);
+        $('#deleteRoot #root_id').val(rootId);
         $('#deleteRootModal').modal('show');
+    });
+
+
+    $('body').on('click', 'a.edit_node', function (event) {
+        let nodeId = $(this).data('nodeid');
+        let title = $(this).data('nodetitle');
+        $('#editNode #node_id').val(nodeId);
+        $('#editNode #title').val(title);
+        $('#editNodeModal').modal('show');
     });
 
     $('#createRoot').submit(function (event) {
@@ -206,6 +243,39 @@ jQuery(document).ready(function () {
                     let field = Object.keys(errors.errors)[0];
                     $('#createNode #' + field).addClass('is-invalid');
                     let span = $('#createNode #' + field + 'Error');
+                    span.text(errors.errors[field]);
+                    span.css("display", "block");
+                }
+            }
+        });
+    });
+
+    $('#editNode').submit(function (event) {
+        event.preventDefault();
+        let nodeId = $('#editNode #node_id').val();
+        let title = $('#editNode #title').val();
+        let formData = $(this).serialize();
+        jQuery.ajax({
+            url: $(this).attr('action') + '?node_id=' + nodeId + '&title=' + title,
+            type: 'PUT',
+            data: formData,
+            success: function (response) {
+                getMenuData();
+                let message = JSON.parse(response);
+                alert(message.data);
+                $('#editNode').trigger('reset');
+                $('#editNodeModal').modal('hide');
+            },
+            error: function (xhr) {
+                let errors = JSON.parse(xhr.responseText);
+                if (typeof errors.errors === 'string') {
+                    alert(errors.errors);
+                    $('#editNode').trigger('reset');
+                    $('#editNodeModal').modal('hide');
+                } else {
+                    let field = Object.keys(errors.errors)[0];
+                    $('#editNode #' + field).addClass('is-invalid');
+                    let span = $('#editNode #' + field + 'Error');
                     span.text(errors.errors[field]);
                     span.css("display", "block");
                 }
