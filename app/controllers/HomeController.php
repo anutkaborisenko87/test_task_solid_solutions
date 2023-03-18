@@ -10,7 +10,7 @@ use TestTaskSolidSolutions\Core\Controller;
 class HomeController extends Controller
 {
     /**
-     * @return null
+     * @return void
      */
     public function index()
     {
@@ -27,7 +27,6 @@ class HomeController extends Controller
             'site_name' => 'Anna Borisenko Test task',
             'contentdata' => $contentdata
         ];
-        return $this->view->render('home', $data);
+        $this->view->render('home', $data);
     }
-
 }

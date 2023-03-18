@@ -3,8 +3,17 @@
 namespace TestTaskSolidSolutions\Core;
 
 class Response {
+    /**
+     * @var string
+     */
     protected $content = '';
+    /**
+     * @var int
+     */
     protected $status;
+    /**
+     * @var array
+     */
     protected $headers;
 
     /**
@@ -18,7 +27,12 @@ class Response {
         $this->headers = $headers;
     }
 
-    public function set_content($content) {
+    /**
+     * @param $content
+     * @return void
+     */
+    public function set_content($content)
+    {
         $this->content = $content;
     }
 
@@ -26,7 +40,8 @@ class Response {
      * @param int $status
      * @return void
      */
-    public function set_status(int $status) {
+    public function set_status(int $status)
+    {
         $this->status = $status;
     }
 
@@ -35,8 +50,8 @@ class Response {
      * @param $value
      * @return void
      */
-
-    public function set_header($name, $value) {
+    public function set_header($name, $value)
+    {
         $this->headers[$name] = $value;
     }
 
@@ -57,7 +72,6 @@ class Response {
      * @param int $status
      * @return Response
      */
-
     public function json(array $data, int $status = 200): Response
     {
         $this->status = $status;

@@ -4,8 +4,17 @@ namespace TestTaskSolidSolutions\Core;
 
 
 class Request {
+    /**
+     * @var mixed
+     */
     protected $method;
+    /**
+     * @var mixed
+     */
     protected $uri;
+    /**
+     * @var array
+     */
     protected $parameters;
 
     public function __construct() {

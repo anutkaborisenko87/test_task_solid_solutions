@@ -3,6 +3,10 @@
 
 use TestTaskSolidSolutions\Core\Response;
 
+/**
+ * @param ...$vars
+ * @return void
+ */
 function dd(...$vars)
 {
     echo '<style>pre {background-color:#4f4c4c;border:1px solid #1b2026;padding:10px;margin:20px; color: #7fc002}</style>';
@@ -14,6 +18,10 @@ function dd(...$vars)
     die();
 }
 
+/**
+ * @param ...$vars
+ * @return void
+ */
 function dump(...$vars)
 {
     echo '<style>pre {background-color:#4f4c4c;border:1px solid #1b2026;padding:10px;margin:20px; color: #7fc002}</style>';
@@ -24,11 +32,19 @@ function dump(...$vars)
     }
 }
 
+/**
+ * @return Response
+ */
 function response(): Response
 {
     return new Response('');
 }
 
+/**
+ * @param $key
+ * @param $default
+ * @return mixed|null
+ */
 function config($key, $default = null)
 {
     $config = require_once __DIR__ . '/../config/config.php';

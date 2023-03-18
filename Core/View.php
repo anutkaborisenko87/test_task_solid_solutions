@@ -4,8 +4,16 @@ namespace TestTaskSolidSolutions\Core;
 
 class View
 {
+    /**
+     * @var string
+     */
     protected $layout = 'app';
 
+    /**
+     * @param $view
+     * @param $data
+     * @return void
+     */
     public function render($view, $data = [])
     {
         $layout = $this->getLayout($data);
@@ -15,7 +23,13 @@ class View
         echo $output;
     }
 
-    public function getContent($view, $data = [])
+    /**
+     * @param string $view
+     * @param array $data
+     * @return false|string
+     */
+
+    public function getContent(string $view, array $data = [])
     {
         extract($data);
         ob_start();
@@ -25,7 +39,11 @@ class View
         return ob_get_clean();
     }
 
-    public function getLayout($data = [])
+    /**
+     * @param array $data
+     * @return false|string
+     */
+    public function getLayout(array $data = [])
     {
         extract($data);
         ob_start();
@@ -37,6 +55,10 @@ class View
         return ob_get_clean();
     }
 
+    /**
+     * @param $layout
+     * @return void
+     */
     public function setLayout($layout)
     {
         $this->layout = $layout;

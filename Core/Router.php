@@ -5,27 +5,57 @@ namespace TestTaskSolidSolutions\Core;
 
 class Router
 {
+    /**
+     * @var array
+     */
     protected static $routes = [];
+
+    /**
+     * @param $url
+     * @param $callback
+     * @return void
+     */
     public static function get($url, $callback)
     {
         self::addRoute('GET', $url, $callback);
     }
 
+    /**
+     * @param $url
+     * @param $callback
+     * @return void
+     */
     public static function post($url, $callback)
     {
         self::addRoute('POST', $url, $callback);
     }
 
+    /**
+     * @param $url
+     * @param $callback
+     * @return void
+     */
     public static function put($url, $callback)
     {
         self::addRoute('PUT', $url, $callback);
     }
 
+    /**
+     * @param $url
+     * @param $callback
+     * @return void
+     */
     public static function delete($url, $callback)
     {
         self::addRoute('DELETE', $url, $callback);
     }
 
+    /**
+     * @param $method
+     * @param $url
+     * @param $callback
+     * @return void
+     */
     protected static function addRoute($method, $url, $callback)
     {
 
@@ -34,6 +64,11 @@ class Router
         ];
     }
 
+    /**
+     * @param $url
+     * @param $method
+     * @return Response|void
+     */
     public static function match($url, $method)
     {
         if (array_key_exists($method, self::$routes)) {

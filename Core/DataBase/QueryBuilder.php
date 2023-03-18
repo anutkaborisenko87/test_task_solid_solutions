@@ -6,12 +6,25 @@ use PDO;
 
 class QueryBuilder extends DataBase
 {
+    /**
+     * @var string
+     */
     protected $table;
+    /**
+     * @var string
+     */
     protected $select = '*';
-
+    /**
+     * @var array
+     */
     protected $where = [];
+    /**
+     * @var array
+     */
     protected $bindParams = [];
-
+    /**
+     * @var string
+     */
     protected $primaryKey = 'id';
 
     /**
@@ -40,6 +53,10 @@ class QueryBuilder extends DataBase
         return $this;
     }
 
+    /**
+     * @param $column
+     * @return array|false
+     */
     public function whereNull($column)
     {
         $query = "SELECT {$this->select} FROM {$this->table}";

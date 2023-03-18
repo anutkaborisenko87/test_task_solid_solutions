@@ -6,6 +6,9 @@ use PDO;
 
 class DataBase extends Connection
 {
+    /**
+     * @var PDO
+     */
     protected $pdo;
 
     public function __construct()
@@ -14,21 +17,15 @@ class DataBase extends Connection
         $this->pdo = $this->getPdo();
     }
 
-    public function query($sql, $params = [])
+    /**
+     * @param string $sql
+     * @param array $params
+     * @return false|\PDOStatement
+     */
+    public function query(string $sql, array $params = [])
     {
         $stmt = $this->pdo->prepare($sql);
         $stmt->execute($params);
         return $stmt;
-    }
-
-    public function results($sql, $params = [])
-    {
-        $stmt = $this->query($sql, $params);
-        return $stmt->fetchAll(PDO::FETCH_ASSOC);
-    }
-
-    public function errors()
-    {
-        return $this->pdo->errorInfo();
     }
 }

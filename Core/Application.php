@@ -2,6 +2,8 @@
 
 namespace TestTaskSolidSolutions\Core;
 
+use Exception;
+
 class Application
 {
     protected $request;
@@ -15,7 +17,7 @@ class Application
     }
 
     /**
-     * @throws \Exception
+     * @throws Exception
      */
     public function run()
     {

@@ -8,6 +8,9 @@ use TestTaskSolidSolutions\Core\Config;
 
 class Connection
 {
+    /**
+     * @var PDO
+     */
     protected $pdo;
 
     public function __construct()
@@ -26,11 +29,17 @@ class Connection
         $this->pdo = new PDO($dsn, $username, $password, $options);
     }
 
+    /**
+     * @return PDO
+     */
     public function getPdo(): PDO
     {
         return $this->pdo;
     }
 
+    /**
+     * @return void
+     */
     public function close()
     {
         $this->pdo = null;

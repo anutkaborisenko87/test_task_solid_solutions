@@ -9,7 +9,6 @@ class Config
     /**
      * @return array
      */
-
     public static function databaseConfig(): array
     {
         return [

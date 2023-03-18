@@ -7,9 +7,21 @@ use TestTaskSolidSolutions\Core\DataBase\QueryBuilder;
 
 class Model
 {
+    /**
+     * @var string
+     */
     protected $table;
+    /**
+     * @var array
+     */
     protected $fillable = [];
+    /**
+     * @var string
+     */
     protected $primaryKey = 'id';
+    /**
+     * @var QueryBuilder
+     */
     protected $queryBuilder;
 
     public function __construct()
@@ -17,22 +29,11 @@ class Model
         $this->queryBuilder = new QueryBuilder();
         $this->queryBuilder->table($this->table);
     }
-    public function __get($name) {
-        if (in_array($name, $this->fillable)) {
-            return $this->$name;
-        } else {
-            throw new Exception("Property $name does not exist.");
-        }
-    }
 
-    public function __set($name, $value) {
-        if (in_array($name, $this->fillable)) {
-            $this->$name = $value;
-        } else {
-            throw new Exception("Property $name does not exist.");
-        }
-    }
-
+    /**
+     * @param array $data
+     * @return false|string
+     */
     public function create(array $data)
     {
         return (new QueryBuilder())->table($this->table)->insert($data);
@@ -46,26 +47,23 @@ class Model
         return (new QueryBuilder())->table($this->table)->where($this->primaryKey, '=', $id)->update($columns);
     }
 
+    /**
+     * @param $id
+     * @return int
+     */
     public function delete($id): int
     {
         return $this->queryBuilder->where($this->primaryKey, '=', $id)->delete();
     }
 
+    /**
+     * @param $id
+     * @return mixed
+     */
     public function find($id)
     {
         $this->queryBuilder->where($this->primaryKey, '=', $id);
         return $this->queryBuilder->get()[0];
-    }
-
-    public function all()
-    {
-        return $this->queryBuilder->get();
-    }
-
-    public function where(string $column, string $operator, $value)
-    {
-        $this->queryBuilder->where($column, $operator, $value);
-        return $this->queryBuilder->get();
     }
 
 }

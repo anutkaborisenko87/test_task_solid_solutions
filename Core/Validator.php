@@ -3,8 +3,11 @@
 namespace TestTaskSolidSolutions\Core;
 
 class Validator {
-    private $data;
-    private $errors = [];
+
+    /**
+     * @var array
+     */
+    private $data, $errors = [];
 
     /**
      * @param array $data
@@ -36,6 +39,11 @@ class Validator {
 
     }
 
+    /**
+     * @param string $field
+     * @return void
+     */
+
     public function requiredField(string $field)
     {
         if (!isset($this->errors[$field])) {
@@ -43,7 +51,6 @@ class Validator {
                 $this->addError($field, "Field $field is required.");
             }
         }
-
     }
 
     /**

@@ -3,11 +3,16 @@
 namespace TestTaskSolidSolutions\app\controllers;
 
 use TestTaskSolidSolutions\app\models\Node;
+use TestTaskSolidSolutions\Core\Response;
 use TestTaskSolidSolutions\Core\Validator;
 
 class NodeController
 {
-    public function create($request)
+    /**
+     * @param array $request
+     * @return Response
+     */
+    public function create(array $request): Response
     {
         $validatedData = new Validator($request);
         $validatedData->requiredField('title');
@@ -26,11 +31,27 @@ class NodeController
                 'parent_id' => $request['parent_id']
             ]);
         if (!is_null($node)) {
-            $dataToResponse = (new Node())->find($node);
-            $dataToResponse['nodes'] = (new Node())->getAllNodes($dataToResponse['id']);
-            return response()->json(['data' => $dataToResponse], 200);
+            return response()->json(['data' => 'Node ' . $request['title'] . ' created successfully']);
         }
+        return response()->json(['errors' => 'Something went wrong'], 422);
 
+    }
+
+    /**
+     * @param array $request
+     * @return Response
+     */
+    public function delete(array $request): Response
+    {
+        $deletingNode = (new Node())->find($request['node_id']);
+        if (empty($deletingNode)) {
+            return response()->json(['errors' => 'Node not found'], 404);
+        }
+        $deletedNode = (new Node())->delete($request['node_id']);
+        if ($deletedNode === 0) {
+            return response()->json(['errors' => 'Something went wrong'], 422);
+        }
+        return response()->json(['data' => 'Node ' . $deletingNode['title'] . ' deleted']);
     }
 
 }

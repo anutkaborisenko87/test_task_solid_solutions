@@ -88,7 +88,7 @@
     display: block;
     opacity: 1;
 }
-li::before {
+li:not(:only-child)::before {
     content: "";
     position: absolute;
     top: 50%;

@@ -58,20 +58,20 @@
         </div>
     </div>
 </div>
-<!-- Create node Modal -->
+<!-- Delete root Modal -->
 <div class="modal fade" id="deleteRootModal" tabindex="-1" aria-labelledby="deleteRootModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="createNodeModalLabel">Delete confirmation</h5>
+                <h5 class="modal-title" id="deleteRootModalLabel">Delete confirmation</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-                <div class="modal-body">
-                    <p>This is very dangerous. You shouldn`t do it! Are you really sure?</p>
+            <div class="modal-body">
+                <p>This is very dangerous. You shouldn`t do it! Are you really sure?</p>
 
-                </div>
+            </div>
             <form id="deleteRoot" action="/delete_root" method="post">
                 <input type="hidden" name="root_id" id="root_id">
                 <div class="modal-footer justify-content-between">
@@ -79,7 +79,7 @@
                         <strong><span class="text-danger" id="timer"></span></strong>
                     </div>
                     <div>
-                        <button type="submit" class="btn btn-danger">Dlete Root</button>
+                        <button type="submit" class="btn btn-danger">Delete Root</button>
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
                     </div>
                 </div>
@@ -87,74 +87,32 @@
         </div>
     </div>
 </div>
-
-<div class="container-fluid">
-    <!--<ul class="topmenu">-->
-    <?php
-    function renderMenu($menuItems, $class = "topmenu")
-    {
-        echo '<ul class="' . $class . '">';
-        foreach ($menuItems as $item) {
-            echo '<li>';
-            echo '<a href="#">' . (!empty($item['nodes']) ? '<span class="menu-icon">▶</span>' : '') . $item['title'] .
-
-                '<button type="button" class="btn btn-outline-success btn-sm create_node"
-                                            data-parentId="' . $item['id'] .'"
-                                    >+
-                                    </button></a>';
-            if (!empty($item['nodes'])) {
-                $class = isset($item['depth']) && $item['depth'] === 0 ? "submenu" : "submenu subsubmenu";
-                renderMenu($item['nodes'], $class);
-            }
-            echo '</li>';
-        }
-        echo '</ul>';
-    }
-
-    foreach ($contentdata as $item) {
-        if (is_null($item['parent_id'])) {
-            ?>
-            <div class="row">
-                <div class="nav">
-                    <ul class="topmenu">
-                        <?php
-                        if (!empty($item['nodes'])) {
-                            ?>
-                                <li>
-                                    <a href="#"><span class="menu-icon">▶</span><?= $item['title'] ?>
-                                        <button type="button" class="btn btn-outline-success btn-sm create_node"
-                                                data-parentId="<?= $item['id'] ?>"
-                                        >+</button>
-                                        <button type="button" class="btn btn-outline-danger btn-sm delete_root"
-                                                data-parentId="<?= $item['id'] ?>"
-                                                data-toggle="modal"
-                                                data-target="#deleteRootModal">-</button>
-                                    </a>
-                                    <?php renderMenu($item['nodes'], 'submenu');?>
-                                </li>
-                            <?php
-                        } else {
-                            ?>
-                                <li>
-                                    <a href="#"><?= $item['title'] ?>
-                                        <button type="button" class="btn btn-outline-success btn-sm create_node"
-                                                data-parentId="<?= $item['id'] ?>"
-                                                data-toggle="modal"
-                                                data-target="#createNodeModal">+</button>
-                                        <button type="button" class="btn btn-outline-danger btn-sm delete_root"
-                                                data-parentId="<?= $item['id'] ?>"
-                                                data-toggle="modal"
-                                                data-target="#deleteRootModal">-</button>
-                                    </a>
-                                </li>
-                            <?php
-                        }
-                        ?>
-                    </ul>
-                </div>
+<!-- Delete node Modal -->
+<div class="modal fade" id="deleteNodeModal" tabindex="-1" aria-labelledby="deleteNodeModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="deleteNodeModalLabel">Delete confirmation</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
             </div>
-            <?php
-        }
-    }
-    ?>
+            <div class="modal-body">
+                <p id="confirmation_text"></p>
+                <p> Are you sure? </p>
+            </div>
+            <form id="deleteNode" action="/delete_node" method="post">
+                <input type="hidden" name="node_id" id="node_id">
+                <div class="modal-footer justify-content-center">
+                    <button type="submit" class="btn btn-danger">Delete Node</button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<div id="datacontent" style="display: none;"><?= json_encode($contentdata) ?></div>
+<div id="content" class="container-fluid">
+
 </div>
