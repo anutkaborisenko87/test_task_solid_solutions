@@ -56,7 +56,7 @@ composer install
 - To set up a connection to the database, you need to enter the appropriate settings in the
   file [app/helpers/helpers.php](https://github.com/anutkaborisenko87/test_task_solid_solutions/blob/main/app/helpers/helpers.php)
   in
-  method [config](https://github.com/anutkaborisenko87/test_task_solid_solutions/blob/ff1db111ad9ae6f4aac2c02aa749322a639ac13c/app/helpers/helpers.php#L48)
+  method [config](https://github.com/anutkaborisenko87/test_task_solid_solutions/blob/main/app/helpers/helpers.php#L48)
   in array $config
 
 ### Contacts
