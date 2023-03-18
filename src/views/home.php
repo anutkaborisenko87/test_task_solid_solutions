@@ -58,6 +58,34 @@
         </div>
     </div>
 </div>
+<!-- Edit node Modal -->
+<div class="modal fade" id="editNodeModal" tabindex="-1" aria-labelledby="editNodeModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="editNodeModalLabel">Edit node</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <form id="editNode" action="/edit_node" method="post">
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label for="title">Node title</label>
+                        <input type="hidden" name="node_id" id="node_id">
+                        <input type="text" class="form-control" name="title" id="title" aria-describedby="titleError"
+                               required>
+                        <small id="titleError" class="form-text text-danger" style="display: none;"></small>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-primary">Save</button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cansel</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
 <!-- Delete root Modal -->
 <div class="modal fade" id="deleteRootModal" tabindex="-1" aria-labelledby="deleteRootModalLabel" aria-hidden="true">
     <div class="modal-dialog">
